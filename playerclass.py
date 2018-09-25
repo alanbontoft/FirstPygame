@@ -23,3 +23,6 @@ class Player(pygame.sprite.Sprite):
             self.rect.x += 5
         else:
             self.rect.x -= 5
+
+    def reverse(self):
+        self.forward = not self.forward

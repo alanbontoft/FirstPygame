@@ -31,7 +31,7 @@ while running:
 
         # change direction on mouse click
         if event.type == pygame.MOUSEBUTTONDOWN:
-            player.forward = not player.forward
+            player.reverse()
     # Update
     all_sprites.update()
     # Draw/render
