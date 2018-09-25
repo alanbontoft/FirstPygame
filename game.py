@@ -1,9 +1,7 @@
+# module imports
 import pygame
 import playerclass
 import gamedefs
-
-
-
 
 # initialise pygame and create window
 pygame.init()
@@ -15,10 +13,11 @@ clock = pygame.time.Clock()
 
 all_sprites = pygame.sprite.Group()
 
+# create player object and add to sprite group
 player = playerclass.Player()
 all_sprites.add(player)
 
-# game loop
+# main game loop
 running = True
 
 while running:
