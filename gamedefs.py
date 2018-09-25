@@ -1,6 +1,16 @@
+# main screen size
 WIDTH = 800
 HEIGHT = 600
+
+# sprite size
+SPRITE_WIDTH = 25
+SPRITE_HEIGHT = 25
+
+# frame speed
 FPS = 30
+
+# move step size
+STEP = 10
 
 # define colors
 WHITE = (255,255,255)

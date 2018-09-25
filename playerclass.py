@@ -1,13 +1,15 @@
 import pygame
 import gamedefs
+import math
 
 # class for player sprite
 class Player(pygame.sprite.Sprite):
     # sprite for the player
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.Surface((50,50))
-        self.image.fill(gamedefs.BLUE)
+        self.image = pygame.Surface((gamedefs.SPRITE_WIDTH, gamedefs.SPRITE_HEIGHT))
+        self.image.fill(gamedefs.GREEN)
+        # pygame.draw.circl(self.image, gamedefs.RED, (25,25), 25)
         self.rect = self.image.get_rect()
         self.rect.center = (gamedefs.WIDTH / 2, gamedefs.HEIGHT / 2)
         self.direction = "STOPPED"
@@ -17,36 +19,36 @@ class Player(pygame.sprite.Sprite):
             
             # if at far right, change to left
             if self.direction == "RIGHT":
-                if self.rect.x == (gamedefs.WIDTH - self.rect.width):
+                if math.fabs(self.rect.right - gamedefs.WIDTH) <= gamedefs.STEP:
                     self.direction = "LEFT"
         
             # if at far left, change to right
             if self.direction == "LEFT":
-                if self.rect.x == 0:
+                if self.rect.left <= 0:
                     self.direction = "RIGHT"
 
             # if at top, change to down
             if self.direction == "UP":
-                if self.rect.y == 0:
+                if self.rect.top <= 0:
                     self.direction = "DOWN"        
 
             # if at bottom, change to up
             if self.direction == "DOWN":
-                if self.rect.y == (gamedefs.HEIGHT - self.rect.height):
+                if math.fabs(self.rect.bottom - gamedefs.HEIGHT) <= gamedefs.STEP:
                     self.direction = "UP"
 
             # change approprite coordinate
             if self.direction == "UP":
-                    self.rect.y -= 5
+                    self.rect.y -= gamedefs.STEP
 
             if self.direction == "DOWN":
-                    self.rect.y += 5
+                    self.rect.y += gamedefs.STEP
 
             if self.direction == "LEFT":
-                    self.rect.x -= 5
+                    self.rect.x -= gamedefs.STEP
 
             if self.direction == "RIGHT":
-                    self.rect.x += 5
+                    self.rect.x += gamedefs.STEP
 
     def reverse(self):
         if self.direction == "UP":
