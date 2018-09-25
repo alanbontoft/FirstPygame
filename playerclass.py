@@ -7,9 +7,12 @@ class Player(pygame.sprite.Sprite):
     # sprite for the player
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.Surface((gamedefs.SPRITE_WIDTH, gamedefs.SPRITE_HEIGHT))
-        self.image.fill(gamedefs.GREEN)
-        # pygame.draw.circl(self.image, gamedefs.RED, (25,25), 25)
+        
+        if gamedefs.USEIMAGE == 1:
+            self.image = pygame.image.load(gamedefs.IMAGE)
+        else:
+            self.image = pygame.Surface((gamedefs.SPRITE_WIDTH, gamedefs.SPRITE_HEIGHT))
+            self.image.fill(gamedefs.GREEN)
         self.rect = self.image.get_rect()
         self.rect.center = (gamedefs.WIDTH / 2, gamedefs.HEIGHT / 2)
         self.direction = "STOPPED"
