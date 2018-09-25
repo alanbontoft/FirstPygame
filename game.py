@@ -32,6 +32,20 @@ while running:
         # change direction on mouse click
         if event.type == pygame.MOUSEBUTTONDOWN:
             player.reverse()
+        
+        # arrow key event
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                player.direction = "LEFT"
+            if event.key == pygame.K_RIGHT:
+                player.direction = "RIGHT"
+            if event.key == pygame.K_UP:
+                player.direction = "UP"
+            if event.key == pygame.K_DOWN:
+                player.direction = "DOWN"
+            if event.key == pygame.K_SPACE:
+                player.direction = "STOPPED"
+
     # Update
     all_sprites.update()
     # Draw/render
