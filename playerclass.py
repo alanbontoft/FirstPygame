@@ -1,6 +1,7 @@
 import pygame
 import gamedefs
 
+# class for player sprite
 class Player(pygame.sprite.Sprite):
     # sprite for the player
     def __init__(self):
