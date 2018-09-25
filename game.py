@@ -28,6 +28,10 @@ while running:
         # close window event
         if event.type == pygame.QUIT:
             running = False
+
+        # change direction on mouse click
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            player.forward = not player.forward
     # Update
     all_sprites.update()
     # Draw/render
