@@ -3,12 +3,15 @@ import pygame
 import playerclass
 import gamedefs
 
+def title():
+    return "Mygame, Pygame"
+
 def main():
     # initialise pygame and create window
     pygame.init()
     pygame.mixer.init()
     screen = pygame.display.set_mode((gamedefs.WIDTH,gamedefs.HEIGHT))
-    pygame.display.set_caption("My Game, Py Game")
+    pygame.display.set_caption(title())
 
     clock = pygame.time.Clock()
 
