@@ -24,4 +24,4 @@ USEIMAGE = 1
 IMAGE = './red_button.png'
 
 # sound file
-SOUNDFILE = './boing2.wav'
+SOUNDFILE = './boing1.wav'
