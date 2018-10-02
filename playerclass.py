@@ -17,6 +17,7 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = (gamedefs.WIDTH / 2, gamedefs.HEIGHT / 2)
         self.direction = "STOPPED"
+        self.Sound = pygame.mixer.Sound(gamedefs.SOUNDFILE)
     
     def update(self):
         if self.direction != "STOPPED":
@@ -25,21 +26,25 @@ class Player(pygame.sprite.Sprite):
             if self.direction == "RIGHT":
                 if math.fabs(self.rect.right - gamedefs.WIDTH) <= gamedefs.STEP:
                     self.direction = "LEFT"
+                    self.Sound.play()
         
             # if at far left, change to right
             if self.direction == "LEFT":
                 if self.rect.left <= 0:
                     self.direction = "RIGHT"
+                    self.Sound.play()
 
             # if at top, change to down
             if self.direction == "UP":
                 if self.rect.top <= 0:
                     self.direction = "DOWN"        
+                    self.Sound.play()
 
             # if at bottom, change to up
             if self.direction == "DOWN":
                 if math.fabs(self.rect.bottom - gamedefs.HEIGHT) <= gamedefs.STEP:
                     self.direction = "UP"
+                    self.Sound.play()
 
             # change approprite coordinate
             if self.direction == "UP":

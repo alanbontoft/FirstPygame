@@ -22,3 +22,6 @@ BLUE = (0,0,255)
 # use square or image
 USEIMAGE = 1
 IMAGE = './red_button.png'
+
+# sound file
+SOUNDFILE = './boing2.wav'
