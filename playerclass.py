@@ -1,6 +1,7 @@
 # module imports
 import pygame
 import gamedefs
+import math
 
 # class for player sprite
 class Player(pygame.sprite.Sprite):
