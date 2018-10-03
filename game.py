@@ -13,8 +13,10 @@ def main():
     screen = pygame.display.set_mode((gamedefs.WIDTH,gamedefs.HEIGHT))
     pygame.display.set_caption(title())
 
+    # create clock object to control refresh rate
     clock = pygame.time.Clock()
 
+    # create sprite group
     all_sprites = pygame.sprite.Group()
 
     # create player object and add to sprite group
@@ -25,11 +27,14 @@ def main():
     running = True
 
     while running:
+        
+        # wait for any remaining time in loop after 'process/update/draw' cycle
         clock.tick(gamedefs.FPS)
+        
         # Process input/events
         for event in pygame.event.get():
 
-            # close window event
+            # close window if 'x' clicked
             if event.type == pygame.QUIT:
                 running = False
 
@@ -37,7 +42,7 @@ def main():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 player.reverse()
             
-            # arrow key event
+            # key events
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
                     player.direction = "LEFT"
@@ -50,15 +55,17 @@ def main():
                 if event.key == pygame.K_SPACE:
                     player.direction = "STOPPED"
 
-        # Update
+        # Update sprites
         all_sprites.update()
-        # Draw/render
+        
+        # Draw/render main screen and sprites
         screen.fill(gamedefs.BLACK)
         all_sprites.draw(screen)
-        # screen.Draw()
         pygame.display.flip()
 
+    # quit pygame module
     pygame.quit()
 
+# call main function
 if __name__ == "__main__":
     main()
