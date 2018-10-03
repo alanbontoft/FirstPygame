@@ -9,14 +9,23 @@ class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
         
+        # use image or plain rectangle
         if gamedefs.USEIMAGE == 1:
             self.image = pygame.image.load(gamedefs.IMAGE)
         else:
             self.image = pygame.Surface((gamedefs.SPRITE_WIDTH, gamedefs.SPRITE_HEIGHT))
             self.image.fill(gamedefs.GREEN)
+        
+        # set rect member to the images rect
         self.rect = self.image.get_rect()
+
+        # set rect center to screen center
         self.rect.center = (gamedefs.WIDTH / 2, gamedefs.HEIGHT / 2)
+        
+        # set direction member to 'STOPPED'
         self.direction = "STOPPED"
+
+        # create a sound object member and load the file
         self.Sound = pygame.mixer.Sound(gamedefs.SOUNDFILE)
     
     def update(self):
@@ -29,19 +38,19 @@ class Player(pygame.sprite.Sprite):
                     self.Sound.play()
         
             # if at far left, change to right
-            if self.direction == "LEFT":
+            elif self.direction == "LEFT":
                 if self.rect.left <= 0:
                     self.direction = "RIGHT"
                     self.Sound.play()
 
             # if at top, change to down
-            if self.direction == "UP":
+            elif self.direction == "UP":
                 if self.rect.top <= 0:
                     self.direction = "DOWN"        
                     self.Sound.play()
 
             # if at bottom, change to up
-            if self.direction == "DOWN":
+            elif self.direction == "DOWN":
                 if math.fabs(self.rect.bottom - gamedefs.HEIGHT) <= gamedefs.STEP:
                     self.direction = "UP"
                     self.Sound.play()
@@ -50,15 +59,16 @@ class Player(pygame.sprite.Sprite):
             if self.direction == "UP":
                     self.rect.y -= gamedefs.STEP
 
-            if self.direction == "DOWN":
+            elif self.direction == "DOWN":
                     self.rect.y += gamedefs.STEP
 
-            if self.direction == "LEFT":
+            elif self.direction == "LEFT":
                     self.rect.x -= gamedefs.STEP
 
-            if self.direction == "RIGHT":
+            elif self.direction == "RIGHT":
                     self.rect.x += gamedefs.STEP
 
+    # reverse the current direction
     def reverse(self):
         if self.direction == "UP":
             self.direction = "DOWN"
