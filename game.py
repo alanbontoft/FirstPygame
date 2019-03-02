@@ -8,7 +8,16 @@ def title():
     return "Mygame, Pygame"
 
 def checkBehind(player, blobs):
-    return player.rect.center == blobs[0].rect.center or player.rect.center == blobs[1].rect.center or player.rect.center == blobs[2].rect.center or player.rect.center == blobs[3].rect.center
+    
+    result = False
+
+    for i in range(4):
+        if player.rect.center == blobs[i].rect.center:
+            blobs[i].hit()
+            result = True
+            break
+
+    return result
 
 def main():
     # initialise pygame and create window
@@ -23,12 +32,16 @@ def main():
     # create sprite group
     all_sprites = pygame.sprite.Group()
 
-    # create player object and add to sprite group
+    # create player abd blob objects and add to sprite group
+    
+    # single player object
     player = playerclass.Player()
+
+    # list of 4 blobs
     blobs = [   blobclass.Blob(100, 100),
-                blobclass.Blob(700, 100),
-                blobclass.Blob(100, 500),
-                blobclass.Blob(700, 500)]
+                blobclass.Blob(700, 120),
+                blobclass.Blob(120, 500),
+                blobclass.Blob(720, 480)]
 
     # blob.rect.center = 
     all_sprites.add(player)

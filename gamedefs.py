@@ -23,7 +23,8 @@ BLUE = (0,0,255)
 USEIMAGE = 1
 IMAGE = './red_button.png'
 
-BLOB = './blue_button.png'
+BLOB_INIT = './blue_button.png'
+BLOB_HIT = './green_button.png'
 
 # sound file
 SOUNDFILE = './boing1.wav'

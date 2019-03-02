@@ -9,10 +9,13 @@ class Blob(pygame.sprite.Sprite):
     def __init__(self, x, y):
         pygame.sprite.Sprite.__init__(self)
         
-        self.image = pygame.image.load(gamedefs.BLOB)
+        self.image = pygame.image.load(gamedefs.BLOB_INIT)
         
         # set rect member to the images rect
         self.rect = self.image.get_rect()
 
         # set rect center to screen center
         self.rect.center = (x, y)
+    
+    def hit(self):
+        self.image = pygame.image.load(gamedefs.BLOB_HIT)
