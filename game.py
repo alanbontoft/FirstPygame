@@ -1,10 +1,14 @@
 # module imports
 import pygame
 import playerclass
+import blobclass
 import gamedefs
 
 def title():
     return "Mygame, Pygame"
+
+def checkBehind(player, blobs):
+    return player.rect.center == blobs[0].rect.center or player.rect.center == blobs[1].rect.center or player.rect.center == blobs[2].rect.center or player.rect.center == blobs[3].rect.center
 
 def main():
     # initialise pygame and create window
@@ -21,7 +25,17 @@ def main():
 
     # create player object and add to sprite group
     player = playerclass.Player()
+    blobs = [   blobclass.Blob(100, 100),
+                blobclass.Blob(700, 100),
+                blobclass.Blob(100, 500),
+                blobclass.Blob(700, 500)]
+
+    # blob.rect.center = 
     all_sprites.add(player)
+    all_sprites.add(blobs[0])
+    all_sprites.add(blobs[1])
+    all_sprites.add(blobs[2])
+    all_sprites.add(blobs[3])
 
     # main game loop
     running = True
@@ -54,6 +68,8 @@ def main():
                     player.direction = "DOWN"
                 if event.key == pygame.K_SPACE:
                     player.direction = "STOPPED"
+                    if checkBehind(player, blobs):
+                        player.playSound()
 
         # Update sprites
         all_sprites.update()

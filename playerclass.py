@@ -35,25 +35,25 @@ class Player(pygame.sprite.Sprite):
             if self.direction == "RIGHT":
                 if math.fabs(self.rect.right - gamedefs.WIDTH) <= gamedefs.STEP:
                     self.direction = "LEFT"
-                    self.Sound.play()
+                    # self.Sound.play()
         
             # if at far left, change to right
             elif self.direction == "LEFT":
                 if self.rect.left <= 0:
                     self.direction = "RIGHT"
-                    self.Sound.play()
+                    # self.Sound.play()
 
             # if at top, change to down
             elif self.direction == "UP":
                 if self.rect.top <= 0:
                     self.direction = "DOWN"        
-                    self.Sound.play()
+                    # self.Sound.play()
 
             # if at bottom, change to up
             elif self.direction == "DOWN":
                 if math.fabs(self.rect.bottom - gamedefs.HEIGHT) <= gamedefs.STEP:
                     self.direction = "UP"
-                    self.Sound.play()
+                    # self.Sound.play()
 
             # change approprite coordinate
             if self.direction == "UP":
@@ -78,4 +78,7 @@ class Player(pygame.sprite.Sprite):
             self.direction = "RIGHT"
         elif self.direction == "RIGHT":
             self.direction = "LEFT"
+
+    def playSound(self):
+        self.Sound.play()
         
