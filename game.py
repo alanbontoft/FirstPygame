@@ -32,8 +32,13 @@ def main():
     # create sprite group
     all_sprites = pygame.sprite.Group()
 
-    # create player abd blob objects and add to sprite group
-    
+    # starting score
+    score = 0
+
+    ########################################################
+    # create player and blob objects and add to sprite group
+    #
+
     # single player object
     player = playerclass.Player()
 
@@ -43,7 +48,7 @@ def main():
                 blobclass.Blob(120, 500),
                 blobclass.Blob(720, 480)]
 
-    # blob.rect.center = 
+    # add to group
     all_sprites.add(player)
     all_sprites.add(blobs[0])
     all_sprites.add(blobs[1])
@@ -52,6 +57,11 @@ def main():
 
     # main game loop
     running = True
+
+    pygame.font.init()
+
+    # create font object - no name = default
+    scoreFont = pygame.font.SysFont('', 50)
 
     while running:
         
@@ -83,6 +93,7 @@ def main():
                     player.direction = "STOPPED"
                     if checkBehind(player, blobs):
                         player.playSound()
+                        score += 10
 
         # Update sprites
         all_sprites.update()
@@ -90,6 +101,12 @@ def main():
         # Draw/render main screen and sprites
         screen.fill(gamedefs.BLACK)
         all_sprites.draw(screen)
+        
+        # create score text
+        scoreText = 'Score: ' + str(score)
+        textsurface = scoreFont.render(scoreText, False, (255, 0, 0))
+        screen.blit(textsurface, (10,10))
+        
         pygame.display.flip()
 
     # quit pygame module
