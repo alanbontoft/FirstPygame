@@ -103,7 +103,7 @@ def main():
         all_sprites.draw(screen)
         
         # create score text
-        scoreText = 'Score: ' + str(score)
+        scoreText = "Score: %d" % score
         textsurface = scoreFont.render(scoreText, False, (255, 0, 0))
         screen.blit(textsurface, (10,10))
         
