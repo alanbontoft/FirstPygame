@@ -2,6 +2,7 @@
 import pygame
 import gamedefs
 import math
+import os
 
 # class for player sprite
 class Player(pygame.sprite.Sprite):
@@ -9,9 +10,14 @@ class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
         
+        # get os-independant folder name
+        root_dir = os.path.dirname(__file__)
+        img_dir = os.path.join(root_dir, "img")
+        sound_dir = os.path.join(root_dir, "sound")
+
         # use image or plain rectangle
         if gamedefs.USEIMAGE == 1:
-            self.image = pygame.image.load(gamedefs.IMAGE)
+            self.image = pygame.image.load(os.path.join(img_dir, gamedefs.IMAGE))
         else:
             self.image = pygame.Surface((gamedefs.SPRITE_WIDTH, gamedefs.SPRITE_HEIGHT))
             self.image.fill(gamedefs.GREEN)
@@ -26,7 +32,7 @@ class Player(pygame.sprite.Sprite):
         self.direction = "STOPPED"
 
         # create a sound object member and load the file
-        self.Sound = pygame.mixer.Sound(gamedefs.SOUNDFILE)
+        self.Sound = pygame.mixer.Sound(os.path.join(sound_dir, gamedefs.SOUNDFILE))
     
     def update(self):
         if self.direction != "STOPPED":

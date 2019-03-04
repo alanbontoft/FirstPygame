@@ -3,6 +3,7 @@ import pygame
 import playerclass
 import blobclass
 import gamedefs
+import os
 
 def title():
     return "Mygame, Pygame"
