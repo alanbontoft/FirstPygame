@@ -34,7 +34,7 @@ def main():
     all_sprites = pygame.sprite.Group()
 
     # starting score
-    score = 0
+    shots = 0
 
     ########################################################
     # create player and blob objects and add to sprite group
@@ -92,9 +92,10 @@ def main():
                     player.direction = "DOWN"
                 if event.key == pygame.K_SPACE:
                     player.direction = "STOPPED"
+                    shots +=1
                     if checkBehind(player, blobs):
                         player.playSound()
-                        score += 10
+                        # score += 10
 
         # Update sprites
         all_sprites.update()
@@ -104,7 +105,7 @@ def main():
         all_sprites.draw(screen)
         
         # create score text
-        scoreText = "Score: %d" % score
+        scoreText = "Shots: %d" % shots
         textsurface = scoreFont.render(scoreText, False, (255, 0, 0))
         screen.blit(textsurface, (10,10))
         
