@@ -30,8 +30,9 @@ def main():
     # create clock object to control refresh rate
     clock = pygame.time.Clock()
 
-    # create sprite group
-    all_sprites = pygame.sprite.Group()
+    # create sprite groups
+    player_group = pygame.sprite.Group()
+    blobs_group = pygame.sprite.Group()
 
     # starting score
     shots = 0
@@ -50,11 +51,12 @@ def main():
                 blobclass.Blob(720, 480)]
 
     # add to group
-    all_sprites.add(player)
-    all_sprites.add(blobs[0])
-    all_sprites.add(blobs[1])
-    all_sprites.add(blobs[2])
-    all_sprites.add(blobs[3])
+    player_group.add(player)
+
+    blobs_group.add(blobs[0])
+    blobs_group.add(blobs[1])
+    blobs_group.add(blobs[2])
+    blobs_group.add(blobs[3])
 
     # main game loop
     running = True
@@ -98,11 +100,15 @@ def main():
                         # score += 10
 
         # Update sprites
-        all_sprites.update()
+        player_group.update()
+        blobs_group.update()
         
         # Draw/render main screen and sprites
         screen.fill(gamedefs.BLACK)
-        all_sprites.draw(screen)
+        # draw ball group first, holes second
+        player_group.draw(screen)
+        blobs_group.draw(screen)
+        
         
         # create score text
         scoreText = "Shots: %d" % shots
