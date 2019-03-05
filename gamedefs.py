@@ -21,7 +21,7 @@ BLUE = (0,0,255)
 
 # use square or image
 USEIMAGE = 1
-IMAGE = 'red_button.png'
+IMAGE = 'golfball.png'
 
 BLOB_INIT = 'blue_button.png'
 BLOB_HIT = 'green_button.png'
