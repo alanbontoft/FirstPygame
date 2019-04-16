@@ -81,6 +81,7 @@ def main():
                 running = False
 
             # change direction on mouse click
+            # if mouse in bottom right quadrant - just learning about reading mouse position :-)
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if (event.pos[0] > (gamedefs.WIDTH / 2)) and (event.pos[1] > (gamedefs.HEIGHT / 2)):
                     player.reverse()
