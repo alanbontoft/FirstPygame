@@ -4,13 +4,14 @@ import gamedefs
 import math
 import os
 
+
 # class for player sprite
 class Blob(pygame.sprite.Sprite):
     # sprite for the player
     def __init__(self, x, y):
         pygame.sprite.Sprite.__init__(self)
 
-                # get os-independant folder name
+        # get os-independent folder name
         root_dir = os.path.dirname(__file__)
         self.img_dir = os.path.join(root_dir, "img")
         

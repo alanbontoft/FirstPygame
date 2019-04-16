@@ -3,12 +3,13 @@ import pygame
 import playerclass
 import blobclass
 import gamedefs
-import os
+
 
 def title():
     return "Mygame, Pygame"
 
-def checkBehind(player, blobs):
+
+def checkbehind(player, blobs):
     
     result = False
 
@@ -20,11 +21,12 @@ def checkBehind(player, blobs):
 
     return result
 
+
 def main():
     # initialise pygame and create window
     pygame.init()
     pygame.mixer.init()
-    screen = pygame.display.set_mode((gamedefs.WIDTH,gamedefs.HEIGHT))
+    screen = pygame.display.set_mode((gamedefs.WIDTH, gamedefs.HEIGHT))
     pygame.display.set_caption(title())
 
     # create clock object to control refresh rate
@@ -45,10 +47,10 @@ def main():
     player = playerclass.Player()
 
     # list of 4 blobs
-    blobs = [   blobclass.Blob(100, 100),
-                blobclass.Blob(700, 120),
-                blobclass.Blob(120, 500),
-                blobclass.Blob(720, 480)]
+    blobs = [blobclass.Blob(100, 100),
+             blobclass.Blob(700, 120),
+             blobclass.Blob(120, 500),
+             blobclass.Blob(720, 480)]
 
     # add to group
     player_group.add(player)
@@ -64,7 +66,7 @@ def main():
     pygame.font.init()
 
     # create font object - no name = default
-    scoreFont = pygame.font.SysFont('', 50)
+    scorefont = pygame.font.SysFont('', 50)
 
     while running:
         
@@ -80,7 +82,8 @@ def main():
 
             # change direction on mouse click
             if event.type == pygame.MOUSEBUTTONDOWN:
-                player.reverse()
+                if (event.pos[0] > (gamedefs.WIDTH / 2)) and (event.pos[1] > (gamedefs.HEIGHT / 2)):
+                    player.reverse()
             
             # key events
             if event.type == pygame.KEYDOWN:
@@ -94,8 +97,8 @@ def main():
                     player.direction = "DOWN"
                 if event.key == pygame.K_SPACE:
                     player.direction = "STOPPED"
-                    shots +=1
-                    if checkBehind(player, blobs):
+                    shots += 1
+                    if checkbehind(player, blobs):
                         player.playSound()
                         # score += 10
 
@@ -108,17 +111,17 @@ def main():
         # draw ball group first, holes second
         player_group.draw(screen)
         blobs_group.draw(screen)
-        
-        
+
         # create score text
-        scoreText = "Shots: %d" % shots
-        textsurface = scoreFont.render(scoreText, False, (255, 0, 0))
-        screen.blit(textsurface, (10,10))
+        scoretext = "Shots: %d" % shots
+        textsurface = scorefont.render(scoretext, False, (255, 0, 0))
+        screen.blit(textsurface, (10, 10))
         
         pygame.display.flip()
 
     # quit pygame module
     pygame.quit()
+
 
 # call main function
 if __name__ == "__main__":

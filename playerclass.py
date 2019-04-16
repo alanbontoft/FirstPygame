@@ -4,6 +4,7 @@ import gamedefs
 import math
 import os
 
+
 # class for player sprite
 class Player(pygame.sprite.Sprite):
     # sprite for the player
